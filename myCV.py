@@ -13,7 +13,7 @@ def myImshow(img=None):
         pass
     # それ以外の型だったらエラー出してreturn
     else:
-        print('type error')
+        print('type error ->',type(img))
         return
     
     # RGB画像だったらBGRに変換して表示
@@ -24,6 +24,9 @@ def myImshow(img=None):
     # グレースケール画像だったらcmap='gray'と設定して表示
     elif img.ndim == 2:
         plt.imshow(img, cmap='gray')
+        
+    else :
+        print('ndim error ->',img.ndim)
         
 def showMultipleImages(images,col,row, label_set=True, scale=(4,3)):
     rcParams['figure.figsize'] = scale[0] * col, scale[1] * row
