@@ -28,7 +28,10 @@ def myImshow(img=None):
     else :
         print('ndim error ->',img.ndim)
         
-def showMultipleImages(images,col,row, label_set=True, scale=(4,3)):
+def showMultipleImages(images,col=7,row=None, label_set=True, scale=(4,3)):
+    if row is None:
+        row = int(len(images)/col)
+    
     rcParams['figure.figsize'] = scale[0] * col, scale[1] * row
     for i in range(row):
         for j in range(col):
