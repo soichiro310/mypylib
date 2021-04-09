@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pylab import rcParams
 
-def myImshow(img=None):
+def myImshow(img=None, title=None, scale=(6,4)):
+    rcParams['figure.figsize'] = scale[0], scale[1]
     # パスを与えた場合は，imread
     if type(img) is str:
         img = cv2.imread(img)
@@ -15,6 +16,9 @@ def myImshow(img=None):
     else:
         print('type error ->',type(img))
         return
+    
+    if title is not None:
+        plt.title(title)
     
     # RGB画像だったらBGRに変換して表示
     if img.ndim == 3:
