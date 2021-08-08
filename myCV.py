@@ -46,8 +46,6 @@ def myImshow(img=None, title=None, scale=(6,4)):
     else:
         print('type error ->',type(img))
         return
-    
-    
         
 def showMultipleImages(images,col=7,row=None, label_set=True, scale=(4,3)):
     if row is None:
@@ -60,3 +58,17 @@ def showMultipleImages(images,col=7,row=None, label_set=True, scale=(4,3)):
             plt.tick_params(labelbottom=label_set,labelleft=label_set)
             myImshow(images[col * i + j])
     
+def concatSamePILImages(img_list,col=7,row=None):
+    if row is None:
+        row = len(img_list) // col + 1
+    
+    sum_w = img_list[0].width * col
+    sum_h = img_list[0].height * row
+    dst = PIL.Image.new('RGB',(sum_w,sum_h))
+
+    for i,img in enumerate(img_list):
+        paste_w = img_list[0].width * (i % col)
+        paste_h = img_list[0].height * (i // col)
+        dst.paste(img,(paste_w,paste_h))
+        
+    return dst
