@@ -60,7 +60,10 @@ def showMultipleImages(images,col=7,row=None, label_set=True, scale=(4,3)):
     
 def concatSamePILImages(img_list,col=7,row=None):
     if row is None:
-        row = len(img_list) // col + 1
+        row = len(img_list) // col
+        
+        if len(img_list) % col > 0:
+            row += 1
     
     sum_w = img_list[0].width * col
     sum_h = img_list[0].height * row
