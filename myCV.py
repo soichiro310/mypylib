@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pylab import rcParams
 
+import base64
+import io
+from IPython import display as dd
+
+
 def cvImshow(img):
     # RGB画像だったらBGRに変換して表示
     if img.ndim == 3:
@@ -75,3 +80,13 @@ def concatSamePILImages(img_list,col=7,row=None):
         dst.paste(img,(paste_w,paste_h))
         
     return dst
+
+def show_gif(img_list):
+    f = io.BytesIO()
+    img_list[0].save(f, save_all=True, append_images=img_list[1:],format="gif", loop=0)
+
+    f.seek(0)
+    b64 = base64.b64encode(f.read()).decode('ascii')
+    f.close()
+
+    display(dd.HTML(f'<img src="data:image/gif;base64,{b64}" />'))
