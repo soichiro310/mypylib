@@ -25,3 +25,6 @@ def pickle_load(path):
 
 def pickle_dump(obj,path):
     return pickle.dump(obj,open(path,"wb"))
+
+def sorted_dict(in_dict):
+    return { key:value for key,value in sorted(in_dict.items())}
