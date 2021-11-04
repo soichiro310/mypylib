@@ -90,3 +90,6 @@ def show_gif(img_list):
     f.close()
 
     display(dd.HTML(f'<img src="data:image/gif;base64,{b64}" />'))
+    
+def save_gif(img_list,filename,duration=40):
+    img_list[0].save(filename, save_all=True, append_images=img_list[1:],format="gif", loop=0,duration=duration)
